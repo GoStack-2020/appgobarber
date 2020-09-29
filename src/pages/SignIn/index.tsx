@@ -43,7 +43,7 @@ const SignIn: React.FC = () => {
             <Form ref={formRef} onSubmit={handleSignIn}>
               <Input
               autoCorrect={false}
-              autoCapitalize="words"
+              autoCapitalize="none"
               keyboardType="email-address"
               name="email"
               icon="mail"
