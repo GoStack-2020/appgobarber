@@ -9,6 +9,7 @@ import { FormHandles } from '@unform/core';
 import { useNavigation } from '@react-navigation/native';
 import getValidationErrors from '../../utils/getValidationErrors';
 import * as Yup from 'yup';
+import api from '../../services/api';
 
 import { Container, Title, ForgotPassword, ForgotPasswordText, CreateAccountButtonText, CreateAccountButton } from './styles';
 
