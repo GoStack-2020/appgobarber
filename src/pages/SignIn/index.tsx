@@ -9,7 +9,7 @@ import { FormHandles } from '@unform/core';
 import { useNavigation } from '@react-navigation/native';
 import getValidationErrors from '../../utils/getValidationErrors';
 import * as Yup from 'yup';
-import api from '../../services/api';
+import { useAuth } from '../../hooks/auth';
 
 import { Container, Title, ForgotPassword, ForgotPasswordText, CreateAccountButtonText, CreateAccountButton } from './styles';
 
@@ -24,7 +24,9 @@ const SignIn: React.FC = () => {
   const passwordInputRef = useRef<TextInput>(null);
   const navigation = useNavigation();
 
-  passwordInputRef.current?.focus
+  const { signIn, user } = useAuth();
+
+  console.log(user);
 
   const handleSignIn = useCallback(async (data: SignInFormData) => {
     try {
@@ -38,12 +40,11 @@ const SignIn: React.FC = () => {
         abortEarly: false,
       });
 
-      // await signIn({
-      //   email: data.email,
-      //   password: data.password,
-      // });
+      await signIn({
+        email: data.email,
+        password: data.password,
+      });
 
-      // history.push('/dashboard');
 
     } catch (err) {
       if (err instanceof Yup.ValidationError) {
@@ -58,7 +59,7 @@ const SignIn: React.FC = () => {
         'Ocorreu um erro ao fazer login, cheque as credenciais',
       );
     }
-  }, []);
+  }, [signIn]);
 
   return (
     <>
