@@ -39,8 +39,12 @@ const Dashboard: React.FC = () => {
   }, []);
 
   const navigateToProfile = useCallback(() => {
-    navigate('Profile');
-  }, [navigate]);
+    signOut();
+  }, [signOut]);
+
+  // const navigateToProfile = useCallback(() => {
+  //   navigate('Profile');
+  // }, [navigate]);
 
   const navigateToCreateAppointment = useCallback((providerId: string) => {
     navigate('CreateAppointment', { providerId });
@@ -54,7 +58,7 @@ const Dashboard: React.FC = () => {
           <UserName>{user.name}</UserName>
         </HeaderTitle>
 
-        <ProfileButton onPress={() => { navigateToProfile }}>
+        <ProfileButton onPress={navigateToProfile}>
           <UserAvatar source={{ uri: user.avatar_url }} />
         </ProfileButton>
       </Header>
@@ -66,7 +70,7 @@ const Dashboard: React.FC = () => {
           <ProvidersListTitle>Cabelereiros</ProvidersListTitle>
         }
         renderItem={({ item: provider }) => (
-          <ProviderContainer onPress={() => {navigateToCreateAppointment(provider.id)}}>
+          <ProviderContainer onPress={() => { navigateToCreateAppointment(provider.id) }}>
             <ProviderAvatar source={{ uri: provider.avatar_url }} />
 
             <ProviderInfo>
