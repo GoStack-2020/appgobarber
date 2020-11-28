@@ -18,6 +18,12 @@ import {
   Title,
   OpenDatePickerButton,
   OpenDatePickerButtonText,
+  Schedule,
+  Section,
+  SectionTitle,
+  SectionContent,
+  Hour,
+  HourText,
 } from './styles';
 import { useAuth } from '../../hooks/auth';
 import api from '../../services/api';
@@ -158,13 +164,33 @@ const CreateAppointment: React.FC = () => {
         )}
       </Calendar>
 
-      {morningAvailability.map(({ hourFormatted }) => (
-        <Title key={hourFormatted}>{hourFormatted}</Title>
-      ))}
+      <Schedule>
+        <Title>Escolha o horário</Title>
 
-      {afternoonAvailability.map(({ hourFormatted }) => (
-        <Title key={hourFormatted}>{hourFormatted}</Title>
-      ))}
+        <Section>
+          <SectionTitle>Manhã</SectionTitle>
+
+          <SectionContent>
+            {morningAvailability.map(({ hourFormatted }) => (
+              <Hour key={hourFormatted}>
+                <HourText>{hourFormatted}</HourText>
+              </Hour>
+            ))}
+          </SectionContent>
+        </Section>
+
+        <Section>
+          <SectionTitle>Tarde</SectionTitle>
+
+          <SectionContent>
+            {afternoonAvailability.map(({ hourFormatted }) => (
+              <Hour key={hourFormatted}>
+                <HourText>{hourFormatted}</HourText>
+              </Hour>
+            ))}
+          </SectionContent>
+        </Section>
+      </Schedule>
     </Container >
   );
 };
