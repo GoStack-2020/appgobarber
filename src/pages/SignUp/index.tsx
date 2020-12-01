@@ -104,6 +104,7 @@ const SignUp: React.FC = () => {
                 placeholder="Senha"
                 textContentType="newPassword"
                 returnKeyType="send"
+                onSubmitEditing={() => formRef.current?.submitForm()}
               />
 
               <Button onPress={() => formRef.current?.submitForm()}>Criar conta</Button>
